@@ -1,18 +1,10 @@
-jibri:
-  image: jitsi/jibri:latest
-  restart: unless-stopped
-  volumes:
-    - ./jibri/jibri.yml:/etc/jitsi/jibri/jibri.yml
-    - ./recordings:/recordings
-  environment:
-    - XMPP_SERVER=jitsi.localhost
-    - XMPP_DOMAIN=localhost
-    - XMPP_AUTH_USER=jibri
-    - XMPP_AUTH_PASSWORD=jibripass
-    - XMPP_RECORDER_USER=recorder
-    - XMPP_RECORDER_PASSWORD=recorderpass
-  shm_size: "2gb"
-  cap_add:
-    - SYS_ADMIN
-  depends_on:
-    - jitsi
+services:
+  jibri-watcher:
+    image: alpine
+    volumes:
+      - openteamskz_jitsi_recordings:/recordings:ro
+    command: sh -c "watch -n 5 ls /recordings"
+
+volumes:
+  openteamskz_jitsi_recordings:
+    external: true
