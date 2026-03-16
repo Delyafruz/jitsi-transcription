@@ -2,7 +2,7 @@ services:
   jibri-watcher:
     image: alpine
     volumes:
-      - openteamskz_jitsi_recordings:/recordings:ro
+      - openteamskz_jitsi_recordings:/recordings
     command: sh -c "watch -n 5 ls /recordings"
 
 volumes:
