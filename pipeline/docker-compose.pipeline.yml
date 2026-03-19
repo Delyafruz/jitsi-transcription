@@ -5,7 +5,11 @@ services:
     restart: unless-stopped
     env_file: .env
     volumes:
+ feature/jibri-setup
       - openteamskz_jitsi_recordings:/recordings
+
+      - ../recordings:/recordings
+main
     depends_on:
       - whisper
     networks:
@@ -25,8 +29,11 @@ services:
 networks:
   jitsi-net:
     external: true
+ feature/jibri-setup
     name: openteamskz_proxy_net
 
 volumes:
   openteamskz_jitsi_recordings:
     external: true
+    name: openteamskz_proxy_net
+ main
