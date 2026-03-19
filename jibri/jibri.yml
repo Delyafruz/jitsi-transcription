@@ -1,0 +1,13 @@
+recording:
+  recordings-directory: /recordings
+
+ffmpeg:
+  resolution: "1280x720"
+
+chrome:
+  flags:
+    - "--use-fake-ui-for-media-stream"
+    - "--start-maximized"
+    - "--kiosk"
+    - "--enabled"
+    - "--disable-infobars"
