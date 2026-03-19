@@ -7,8 +7,7 @@ logger = logging.getLogger(__name__)
 WHISPER_MODE = os.getenv("WHISPER_MODE", "local")  # "local" or "openai"
  
 # Local Whisper (faster-whisper / whisper.cpp via API)
-WHISPER_LOCAL_URL = os.getenv("WHISPER_LOCAL_URL", "http://whisper:9000/asr")
- 
+WHISPER_LOCAL_URL = os.getenv("WHISPER_LOCAL_URL", "http://whisper:8000/v1/audio/transcriptions")
 # OpenAI Whisper API (fallback)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 WHISPER_LANGUAGE = os.getenv("WHISPER_LANGUAGE", "ru")  # ru, en, etc.
