@@ -30,12 +30,12 @@ def _transcribe_local(file_path: str) -> str:
         with open(file_path, "rb") as f:
             response = requests.post(
                 WHISPER_LOCAL_URL,
-                files={"audio_file": (os.path.basename(file_path), f)},
+                files={"file": (os.path.basename(file_path), f)},
                 params={
-                    "task": "transcribe",
-                    "language": WHISPER_LANGUAGE,
-                    "output": "txt",
-                },
+    "task": "transcribe",
+    "language": WHISPER_LANGUAGE,
+    "output": "txt",
+},
                 timeout=600,  # 10 min for long recordings
             )
         response.raise_for_status()
