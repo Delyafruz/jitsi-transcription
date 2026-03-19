@@ -1,0 +1,32 @@
+services:
+  pipeline:
+    build: .
+    container_name: jitsi-pipeline
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - openteamskz_jitsi_recordings:/recordings
+    depends_on:
+      - whisper
+    networks:
+      - jitsi-net
+
+  whisper:
+    image: fedirz/faster-whisper-server:latest-cpu
+    container_name: jitsi-whisper
+    restart: unless-stopped
+    environment:
+      - WHISPER__MODEL=small
+    ports:
+      - "9000:9000"
+    networks:
+      - jitsi-net
+
+networks:
+  jitsi-net:
+    external: true
+    name: openteamskz_proxy_net
+
+volumes:
+  openteamskz_jitsi_recordings:
+    external: true
